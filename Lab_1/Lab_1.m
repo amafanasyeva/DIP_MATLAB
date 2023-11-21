@@ -103,5 +103,6 @@ cat_marks(1:TargetSize, info_jpg.Height+1-TargetSize:info_jpg.Height)=imcell{1, 
 cat_marks(info_jpg.Width+1-TargetSize:info_jpg.Width, info_jpg.Height+1-TargetSize:info_jpg.Height)=imcell{1, 4}(:,:);
 cat_marks(((info_jpg.Width+1-TargetSize)/2):((info_jpg.Width+TargetSize)/2), ((info_jpg.Height+1-TargetSize)/2):((info_jpg.Height+TargetSize)/2))=imcell{1, 5}(:,:);
 imshow(cat_marks); pause;
+imwrite(cat_marks, 'Marks/cat_marks.jpg')
 
 
