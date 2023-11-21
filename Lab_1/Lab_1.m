@@ -25,43 +25,43 @@ imshow(cat_grey);
 pause;
 imwrite(cat_grey, 'cat_grey.jpg');
 
-% % Шаг 9
-% logical25=imbinarize(cat_grey, 0.25);
-% imshow(logical25);
-% pause;
-% imwrite(logical25, 'Logical/logical25.jpg');
-% 
-% logical50=imbinarize(cat_grey, 0.50);
-% imshow(logical50);
-% pause;
-% imwrite(logical50, 'Logical/logical50.jpg');
-% 
-% logical75=imbinarize(cat_grey, 0.75);
-% imshow(logical75);
-% pause;
-% imwrite(logical75, 'Logical/logical75.jpg');
-% 
-% % Шаг 10
-% for i=1:8
-%     cat_i = logical(bitget(cat_grey, i));
-%     imshow(cat_i); pause;
-%     imwrite(cat_i, ['BitPlane/cat_' int2str(i) '.jpg'] )
-% end
+% Шаг 9
+logical25=imbinarize(cat_grey, 0.25);
+imshow(logical25);
+pause;
+imwrite(logical25, 'Logical/logical25.jpg');
 
-% % Шаг 11
-% for i=[5, 10, 20, 50]
-%     cat_i=mat2gray(blkproc(cat_grey, [i i], 'mean2(x)*ones(size(x))'));
-%     imshow(cat_i); pause;
-%     imwrite(cat_i, ['Discret/cat_' int2str(i) '.jpg']);
-% end
-% 
-% % Шаг 12
-% for i=[4, 16, 32, 64, 128]
-%     levels = linspace(0, 255, i+1);
-%     cat_i = mat2gray(imquantize(cat_grey,levels));
-%     imshow(cat_i); pause;
-%     imwrite(cat_i, ['Quantiz/cat_' int2str(i) '.jpg']);
-% end
+logical50=imbinarize(cat_grey, 0.50);
+imshow(logical50);
+pause;
+imwrite(logical50, 'Logical/logical50.jpg');
+
+logical75=imbinarize(cat_grey, 0.75);
+imshow(logical75);
+pause;
+imwrite(logical75, 'Logical/logical75.jpg');
+
+% Шаг 10
+for i=1:8
+    cat_i = logical(bitget(cat_grey, i));
+    imshow(cat_i); pause;
+    imwrite(cat_i, ['BitPlane/cat_' int2str(i) '.jpg'] )
+end
+
+% Шаг 11
+for i=[5, 10, 20, 50]
+    cat_i=mat2gray(blkproc(cat_grey, [i i], 'mean2(x)*ones(size(x))'));
+    imshow(cat_i); pause;
+    imwrite(cat_i, ['Discret/cat_' int2str(i) '.jpg']);
+end
+
+% Шаг 12
+for i=[4, 16, 32, 64, 128]
+    levels = linspace(0, 255, i+1);
+    cat_i = mat2gray(imquantize(cat_grey,levels));
+    imshow(cat_i); pause;
+    imwrite(cat_i, ['Quantiz/cat_' int2str(i) '.jpg']);
+end
 
 % Шаг 13
 TargetSize = [100, 100];
