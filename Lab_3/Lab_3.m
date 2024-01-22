@@ -1,7 +1,7 @@
 % Вариант 6
 clear;
 
-%% 1 Портрет и гистограмма
+% Шаг 1
 I = imread('photo_2024-01-22_04-43-21.jpg');
 I = rgb2gray(imcrop(I, [160 240 799 799]));
 imwrite(I, 'portrait.png');
@@ -9,7 +9,7 @@ histogram(I);
 saveas(gcf, 'hist.png');
 pause;
 
-%% 2 Логарифмическое преобразование
+% Шаг 2
 g = log(1 + im2double(I));
 imshow(g); 
 pause;
@@ -18,7 +18,7 @@ histogram(g);
 saveas(gcf, 'Log/hist.png');
 pause;
 
-%% 3 Степенное проебразование
+% Шаг 3
 for gamma = [0.1 0.45 5]
     g = im2double(I).^gamma;
     imshow(g);
@@ -29,7 +29,7 @@ for gamma = [0.1 0.45 5]
     saveas(gcf, ['Degree/hist' sprintf('%.2f', gamma) '.png']);
 end
 
-%% 4 Кусочно-линейное преобразование
+% Шаг 4
 points = [0, 255; 120, 120; 120, 250; 180, 250; 180, 75; 255, 0];
 x = points(:, 1);
 y = points(:, 2);
@@ -51,7 +51,7 @@ histogram(g1);
 pause;
 saveas(gcf, 'Line_Contrast/hist.png');
 
-%% 5 Эквализация
+% Шаг 5
 g = histeq(I);
 imshow(g); 
 pause;
@@ -59,7 +59,7 @@ imwrite(g, 'Equaliz/g.png');
 histogram(g); pause;
 saveas(gcf, 'Equaliz/hist.png');
 
-%% 6 Усредняющий фильтр
+% Шаг 6
 for size = [3 15 35]
     g = imfilter(I, fspecial('average', size));
     imshow(g); 
@@ -67,14 +67,14 @@ for size = [3 15 35]
     imwrite(g, ['Filter/average' num2str(size) '.png']);
 end
 
-%% 7 Фильтр повышения резкости
+% Шаг 7
 g2 = imfilter(im2double(I), fspecial('laplacian', 0));
 g = im2double(I) - g2;
 imshow(g);
 pause;
 imwrite(g, 'Filter/sharp.png');
 
-%% 8 Медианный фильтр
+% Шаг 8
 for size = [3 9 15]
     g = medfilt2(I, [size size]);
     imshow(g); 
@@ -82,7 +82,7 @@ for size = [3 9 15]
     imwrite(g, ['Median/' num2str(size) '.png']);
 end
 
-%% 9 Выделение границ
+% Шаг 9
 g1 = edge(I, 'roberts');
 imshow(g1);
 pause;
@@ -96,7 +96,7 @@ imshow(g3);
 pause;
 imwrite(g3, 'Edge/sobel.png');
 
-%% 10 Фильтрация шума
+% Шаг 10
 noise = imnoise2('salt & pepper', 800, 800, 0.1/255, 0.8/255);
 salt = find(noise == 1);
 noisy = I;
